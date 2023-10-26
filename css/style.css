@@ -1,8 +1,22 @@
 body {
     margin: 0;
+    font-family: 'consolas';
 }
 .game-wrapper {
     background-color: skyblue;
     width: 100vw;
     height: 100vw;
+}
+.start-screen {
+    margin-top: 100px;
+    text-align: center;
+    padding: 20px;
+    border-color: grey;
+    border-radius: 10px;
+    background-color: lightgreen;
+    font-weight: bold;
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    transform: translate(-50%);
 }
