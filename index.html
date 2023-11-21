@@ -11,6 +11,7 @@
 <body>
     <div class="game-wrapper">
         <div class="start-screen">Start Game</div>
+        <div class="score-screen">0 pts.</div>
         <div class="play-screen hidden"></div>
     </div>
     <script src="gameState.js"></script>
@@ -34,7 +35,7 @@
 
         function gameLoop(timestamp) {
             let { fighter } = state;
-            let { fighterElement } = game;
+            let { fighterElement, scoreScreen } = game;
 
             fighterMovement(state, game);
 
@@ -48,14 +49,14 @@
                     if(hasCollision(fighterElement, x)) {
                         state.gameOver = true;
                     }
-
-
                     if (currentPosition > 0) {
                         x.style.left = currentPosition - state.fireballStats.speed + 'px';
                     } else {
                         x.remove();
                     }
-
+                    if(hasCollision(fighterElement, x)) {
+                        state.gameOver = true;
+                    }  
                 });
 
             //spawn fireball
@@ -69,12 +70,13 @@
 
             fighterElement.style.top = fighter.y + 'px';
             fighterElement.style.left = fighter.x + 'px';
-
+            scoreScreen.textContent = state.score + ' pts.'
 
             if (!state.gameOver) {
+                state.score += 1;
                 window.requestAnimationFrame(gameLoop)
             } else {
-                alert('Game Over')
+                alert('Game Over!!!' + ' ' + `Score: ${state.score} points!`)
             }
 
         }
@@ -82,11 +84,17 @@
         function fighterMovement(state, game) {
             let fighter = state.fighter;
 
+            let isLowerBound = fighter.y + fighter.height >= game.playScreen.offsetHeight;
+            if(!isLowerBound) {
+                fighter.y += fighter.gravity;
+            }
+            
+
             if (state.keys.KeyW && fighter.y > 0) {
                 fighter.y -= fighter.speed;
             }
 
-            if (state.keys.KeyS && fighter.y + fighter.height < game.playScreen.offsetHeight) {
+            if (state.keys.KeyS && !isLowerBound) {
                 fighter.y += fighter.speed;
             }
             if (state.keys.KeyA && fighter.x > 0) {
@@ -101,7 +109,7 @@
             let firstRect = firstElement.getBoundingClientRect();
             let secondRect = secondElement.getBoundingClientRect();
 
-            return !(firstRect.top > secondRect.bottom || firstRect.bottom < secondRect.top || firstRect.right < secondRect.left || firstRect.left > secondRect.right);
+            return !(firstRect.top - 30 > secondRect.bottom - 35 || firstRect.bottom < secondRect.top || firstRect.right - 20 < secondRect.left || firstRect.left - 60 > secondRect.right - 70);
                 
             
         }

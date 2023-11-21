@@ -5,6 +5,8 @@ function gameFactory() {
 
     let startScreen = document.querySelector('.start-screen');
     let playScreen = document.querySelector('.play-screen');
+    let scoreScreen = document.querySelector('.score-screen');
+
     let fighterElement = createFighter(fighter.x, fighter.y);
 
     playScreen.appendChild(fighterElement);
@@ -12,6 +14,7 @@ function gameFactory() {
     let factory = {
         startScreen,
         playScreen,
+        scoreScreen,
         fighterElement,
         createFireball: () => {
             let fireballElement = document.createElement('div');

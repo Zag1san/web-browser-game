@@ -28,6 +28,16 @@ body {
     height: 100%;
 }
 
+.score-screen {
+    background-color: black;
+    color: white;
+    text-align: center;
+    position: absolute;
+    transform: translate(-50%);
+    width: 200px;
+    left: 50%;
+}
+
 .fighter {
     position: absolute;
     background-image: url('/images/Ryu-standing1.png');
@@ -39,7 +49,7 @@ body {
     position: absolute;
     background-image: url('/images/tiger-fire.png');
     background-size: cover;
-    
+
 }
 
 .hidden {

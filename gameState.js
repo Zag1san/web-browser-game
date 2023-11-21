@@ -2,12 +2,14 @@ function gameStateFactory() {
     
     let state = {
         gameOver: false,
+        score: 0,
         fighter: {
             x: 100,
             y: 200,
             width: 104,
             height: 146,
             speed: 6,
+            gravity: 2,
         },
         keys: {},
         fireballStats: {
