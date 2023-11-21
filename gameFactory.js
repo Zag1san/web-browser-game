@@ -20,7 +20,7 @@ function gameFactory() {
             fireballElement.style.height = fireballStats.height +'px';
 
             fireballElement.style.left = playScreen.offsetWidth - fireballStats.width + 'px';
-            fireballElement.style.top = (playScreen.offsetHeight - fireballStats.height) * Math.random() +'px';
+            fireballElement.style.top = (playScreen.offsetHeight - fireballStats.height) * Math.random() + 'px';
             playScreen.appendChild(fireballElement)
         }
     };

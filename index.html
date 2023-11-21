@@ -38,24 +38,32 @@
 
             fighterMovement(state, game);
 
+
+
             // Move fireballs
-            Array.form(document.getElementsByClassName('fireball'))
+            Array.from(document.getElementsByClassName('fireball'))
                 .forEach(x => {
                     let currentPosition = parseInt(x.style.left);
-                    if(currentPosition > 0) {
+                    // Check for collisions
+                    if(hasCollision(fighterElement, x)) {
+                        state.gameOver = true;
+                    }
+
+
+                    if (currentPosition > 0) {
                         x.style.left = currentPosition - state.fireballStats.speed + 'px';
                     } else {
                         x.remove();
                     }
-                    
+
                 });
 
             //spawn fireball
-            if(state.fireballStats.nextFireballCreation < timestamp) {
+            if (state.fireballStats.nextFireballCreation < timestamp) {
                 game.createFireball();
                 state.fireballStats.nextFireballCreation = timestamp + Math.random() * state.fireballStats.maxCreationInterval;
             }
-            
+
 
             // Render
 
@@ -87,6 +95,19 @@
             if (state.keys.KeyD && fighter.x + fighter.width < game.playScreen.offsetWidth) {
                 fighter.x += fighter.speed;
             }
+        }
+
+        function hasCollision(firstElement, secondElement) {
+            let firstRect = firstElement.getBoundingClientRect();
+            let secondRect = secondElement.getBoundingClientRect();
+
+            return !(firstRect.top > secondRect.bottom || firstRect.bottom < secondRect.top || firstRect.right < secondRect.left || firstRect.left > secondRect.right);
+                
+            
+        }
+
+        function gameOver() {
+            
         }
 
         function onKeyDown(e) {
