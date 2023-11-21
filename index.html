@@ -11,10 +11,11 @@
         <div class="start-screen">Start Game</div>
         <div class="play-screen hidden"></div>
     </div>
-    <script src="init.js"></script>
+    <script src="gameState.js"></script>
+    <script src="gameFactory.js"></script>
     <script>
-        let state = {};
-
+        let getState = gameStateFactory();
+        let state = getState()
         let game = gameFactory();
 
         game.startScreen.addEventListener('click', gameStart);
@@ -22,8 +23,19 @@
         function gameStart() {
             game.startScreen.classList.add('hidden');
             game.playScreen.classList.remove('hidden');
+
+            window.requestAnimationFrame(gameLoop)
         }
         
+        function gameLoop() {
+            // console.log('loop');
+            if(!state.gameOver) {
+                window.requestAnimationFrame(gameLoop)
+            } else {
+                alert('Game Over')
+            }
+            
+        }
     </script>
 </body>
 </html>

@@ -1,22 +1,20 @@
 function gameFactory() {
-    let factory = {};
+   let getState = gameStateFactory();
+   
+   let { fighter } = getState();
 
     let startScreen = document.querySelector('.start-screen');
     let playScreen = document.querySelector('.play-screen');
-    let fighterElement = createFighter(100, 200);
+    let fighterElement = createFighter(fighter.x, fighter.y);
 
     playScreen.appendChild(fighterElement);
 
-    Object.defineProperties(factory, {
-        startScreen: {
-            get: () => startScreen
-        },
-        playScreen: {
-            get: () => playScreen
-        },
-        fighterElement
-    });
-
+    let factory = {
+        startScreen,
+        playScreen,
+        fighterElement,
+    };
+    
     return factory;
 };
 function createFighter(posX, posY,) {
