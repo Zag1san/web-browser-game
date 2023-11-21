@@ -33,22 +33,8 @@
         function gameLoop() {
             let { fighter } = state;
             let { fighterElement } = game;
-
-            // User input;
            
-            if(state.keys.KeyW) {
-                fighter.y -= fighter.speed;
-            } 
-
-            if(state.keys.KeyS) {
-                fighter.y += fighter.speed;
-            }
-            if(state.keys.KeyA) {
-                fighter.x -= fighter.speed;
-            }
-            if(state.keys.KeyD) {
-                fighter.x += fighter.speed;
-            }
+            fighterMovement(state, game);
 
             // Render
 
@@ -63,6 +49,25 @@
             }
             
         }
+
+        function fighterMovement(state, game) {
+            let fighter = state.fighter;
+
+            if(state.keys.KeyW && fighter.y > 0) {
+                fighter.y -= fighter.speed;
+            } 
+
+            if(state.keys.KeyS && fighter.y + fighter.height < game.playScreen.offsetHeight ) {
+                fighter.y += fighter.speed;
+            }
+            if(state.keys.KeyA && fighter.x > 0) {
+                fighter.x -= fighter.speed;
+            }
+            if(state.keys.KeyD && fighter.x + fighter.width < game.playScreen.offsetWidth ) {
+                fighter.x += fighter.speed;
+            }
+        }
+
         function onKeyDown(e) {
             state.keys[e.code] = true;
         };

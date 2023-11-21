@@ -5,7 +5,9 @@ function gameStateFactory() {
         fighter: {
             x: 100,
             y: 200,
-            speed: 4,
+            width: 104,
+            height: 146,
+            speed: 6,
         },
         keys: {},
         config: {
