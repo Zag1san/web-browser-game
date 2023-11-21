@@ -3,7 +3,8 @@ body {
     font-family: 'consolas';
 }
 .game-wrapper {
-    background-color: skyblue;
+    
+    background-color: lightblue;
     width: 100vw;
     height: 100vw;
 }
@@ -13,7 +14,7 @@ body {
     padding: 20px;
     border-color: grey;
     border-radius: 10px;
-    background-color: lightgreen;
+    background-color: whitesmoke;
     font-weight: bold;
     position: absolute;
     width: 400px;
