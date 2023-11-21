@@ -21,3 +21,14 @@ body {
     left: 50%;
     transform: translate(-50%);
 }
+
+.fighter {
+    position: absolute;
+    background-image: url('/images/Ryu-standing1.png');
+    width: 100px;
+    height: 142px;
+}
+
+.hidden {
+    display: none;
+}
