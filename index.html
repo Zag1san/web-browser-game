@@ -38,11 +38,23 @@
            
             if(state.keys.KeyW) {
                 fighter.y -= fighter.speed;
+            } 
+
+            if(state.keys.KeyS) {
+                fighter.y += fighter.speed;
+            }
+            if(state.keys.KeyA) {
+                fighter.x -= fighter.speed;
+            }
+            if(state.keys.KeyD) {
+                fighter.x += fighter.speed;
             }
 
             // Render
 
-            fighterElement.style.top = fighter.y + px;
+            fighterElement.style.top = fighter.y + 'px';
+            fighterElement.style.left = fighter.x + 'px';
+
 
             if(!state.gameOver) {
                 window.requestAnimationFrame(gameLoop)
