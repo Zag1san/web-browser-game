@@ -10,8 +10,11 @@ function gameStateFactory() {
             speed: 6,
         },
         keys: {},
-        config: {
-
+        fireballStats: {
+            nextFireballCreation: 0,
+            maxCreationInterval: 2000, 
+            width: 50,
+            height: 50
         }
     };
 

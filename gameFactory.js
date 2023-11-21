@@ -1,7 +1,7 @@
 function gameFactory() {
-   let getState = gameStateFactory();
-   
-   let { fighter } = getState();
+    let getState = gameStateFactory();
+
+    let { fighter, fireballStats } = getState();
 
     let startScreen = document.querySelector('.start-screen');
     let playScreen = document.querySelector('.play-screen');
@@ -13,8 +13,18 @@ function gameFactory() {
         startScreen,
         playScreen,
         fighterElement,
+        createFireball: () => {
+            let fireballElement = document.createElement('div');
+            fireballElement.classList.add('fireball');
+            fireballElement.style.width = fireballStats.width +'px';
+            fireballElement.style.height = fireballStats.height +'px';
+
+            fireballElement.style.left = playScreen.offsetWidth - fireballStats.width + 'px';
+            fireballElement.style.top = (playScreen.offsetHeight - fireballStats.height) * Math.random() +'px';
+            playScreen.appendChild(fireballElement)
+        }
     };
-    
+
     return factory;
 };
 function createFighter(posX, posY,) {

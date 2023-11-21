@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Ryu browser game</title>
 </head>
+
 <body>
-    <div class="game-wrapper" >
+    <div class="game-wrapper">
         <div class="start-screen">Start Game</div>
         <div class="play-screen hidden"></div>
     </div>
@@ -29,12 +31,19 @@
 
             window.requestAnimationFrame(gameLoop)
         }
-        
-        function gameLoop() {
+
+        function gameLoop(timestamp) {
             let { fighter } = state;
             let { fighterElement } = game;
-           
+
             fighterMovement(state, game);
+
+            //spawn fireball
+            if(state.fireballStats.nextFireballCreation < timestamp) {
+                game.createFireball();
+                state.fireballStats.nextFireballCreation = timestamp + Math.random() * state.fireballStats.maxCreationInterval;
+            }
+            
 
             // Render
 
@@ -42,28 +51,28 @@
             fighterElement.style.left = fighter.x + 'px';
 
 
-            if(!state.gameOver) {
+            if (!state.gameOver) {
                 window.requestAnimationFrame(gameLoop)
             } else {
                 alert('Game Over')
             }
-            
+
         }
 
         function fighterMovement(state, game) {
             let fighter = state.fighter;
 
-            if(state.keys.KeyW && fighter.y > 0) {
+            if (state.keys.KeyW && fighter.y > 0) {
                 fighter.y -= fighter.speed;
-            } 
+            }
 
-            if(state.keys.KeyS && fighter.y + fighter.height < game.playScreen.offsetHeight ) {
+            if (state.keys.KeyS && fighter.y + fighter.height < game.playScreen.offsetHeight) {
                 fighter.y += fighter.speed;
             }
-            if(state.keys.KeyA && fighter.x > 0) {
+            if (state.keys.KeyA && fighter.x > 0) {
                 fighter.x -= fighter.speed;
             }
-            if(state.keys.KeyD && fighter.x + fighter.width < game.playScreen.offsetWidth ) {
+            if (state.keys.KeyD && fighter.x + fighter.width < game.playScreen.offsetWidth) {
                 fighter.x += fighter.speed;
             }
         }
@@ -76,4 +85,5 @@
         }
     </script>
 </body>
+
 </html>
