@@ -38,6 +38,18 @@
 
             fighterMovement(state, game);
 
+            // Move fireballs
+            Array.form(document.getElementsByClassName('fireball'))
+                .forEach(x => {
+                    let currentPosition = parseInt(x.style.left);
+                    if(currentPosition > 0) {
+                        x.style.left = currentPosition - state.fireballStats.speed + 'px';
+                    } else {
+                        x.remove();
+                    }
+                    
+                });
+
             //spawn fireball
             if(state.fireballStats.nextFireballCreation < timestamp) {
                 game.createFireball();
