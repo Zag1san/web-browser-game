@@ -15,12 +15,15 @@ var state = {
             maxCreationInterval: 2000,
             speed: 3, 
             width: 50,
-            height: 50
+            height: 50,
+            score: 200
         },
         hadoukenStats: {
             width: 60,
             height: 50,
             speed: 6,
+            nextHadoukenCreation: 0,
+            attackSpeed: 300,
         },
 
 }
