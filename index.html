@@ -17,7 +17,7 @@
     <script src="gameState.js"></script>
     <script src="gameFactory.js"></script>
     <script>
-        
+
         let game = gameFactory();
 
         game.startScreen.addEventListener('click', gameStart);
@@ -37,14 +37,24 @@
 
             fighterMovement(state, game);
 
-            if(state.keys.Space) {
-                 fighterElement.style.backgroundImage = "url('/images/ryu-firing1.png')";
-                 game.createHadouken();
+            if (state.keys.Space) {
+                fighterElement.style.backgroundImage = "url('/images/ryu-firing1.png')";
+                game.createHadouken();
             } else {
                 fighterElement.style.backgroundImage = "url('/images/ryu-standing1.png')";
 
-
             }
+            // Move hadouken
+
+            Array.from(document.getElementsByClassName('hadouken'))
+                .forEach(x => {
+                    let currentPosition = parseInt(x.style.left)
+                    if (currentPosition + (state.hadoukenStats.width + 5) < game.playScreen.offsetWidth) {
+                        x.style.left = currentPosition + state.hadoukenStats.speed + 'px';
+                    } else {
+                        x.remove();
+                    }
+                });
 
 
             // Move fireballs
@@ -52,7 +62,7 @@
                 .forEach(x => {
                     let currentPosition = parseInt(x.style.left);
                     // Check for collisions
-                    if(hasCollision(fighterElement, x)) {
+                    if (hasCollision(fighterElement, x)) {
                         state.gameOver = true;
                     }
                     if (currentPosition > 0) {
@@ -60,9 +70,9 @@
                     } else {
                         x.remove();
                     }
-                    if(hasCollision(fighterElement, x)) {
+                    if (hasCollision(fighterElement, x)) {
                         state.gameOver = true;
-                    }  
+                    }
                 });
 
             //spawn fireball
@@ -93,10 +103,10 @@
             let fighter = state.fighter;
 
             let isLowerBound = fighter.y + fighter.height >= game.playScreen.offsetHeight;
-            if(!isLowerBound) {
+            if (!isLowerBound) {
                 fighter.y += fighter.gravity;
             }
-            
+
 
             if (state.keys.KeyW && fighter.y > 0) {
                 fighter.y -= fighter.speed;
@@ -117,11 +127,11 @@
             let firstRect = firstElement.getBoundingClientRect();
             let secondRect = secondElement.getBoundingClientRect();
 
-            return !(firstRect.top - 30 > secondRect.bottom - 35 || firstRect.bottom < secondRect.top || firstRect.right - 20 < secondRect.left || firstRect.left - 60 > secondRect.right - 70);  
+            return !(firstRect.top - 30 > secondRect.bottom - 35 || firstRect.bottom < secondRect.top || firstRect.right - 20 < secondRect.left || firstRect.left - 60 > secondRect.right - 70);
         }
 
         function gameOver() {
-            
+
         }
 
         function onKeyDown(e) {

@@ -20,7 +20,7 @@ var state = {
         hadoukenStats: {
             width: 60,
             height: 50,
-            speed: 3,
+            speed: 6,
         },
 
 }

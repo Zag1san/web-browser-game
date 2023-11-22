@@ -32,8 +32,8 @@ function gameFactory() {
             hadoukenElement.style.width = hadoukenStats.width + 'px';
             hadoukenElement.style.height = hadoukenStats.height + 'px';
 
-            hadoukenElement.style.left = fighter.x + 'px';
-            hadoukenElement.style.top = fighter.y + 'px';
+            hadoukenElement.style.left = fighter.x + state.hadoukenStats.width + 25 + 'px';
+            hadoukenElement.style.top = fighter.y + state.hadoukenStats.height - 40 + 'px';
 
             playScreen.appendChild(hadoukenElement)
 
