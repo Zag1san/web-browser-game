@@ -1,7 +1,7 @@
 function gameFactory() {
-    let getState = gameStateFactory();
+   
 
-    let { fighter, fireballStats } = getState();
+    let { fighter, fireballStats, hadoukenStats } = state;
 
     let startScreen = document.querySelector('.start-screen');
     let playScreen = document.querySelector('.play-screen');
@@ -25,6 +25,18 @@ function gameFactory() {
             fireballElement.style.left = playScreen.offsetWidth - fireballStats.width + 'px';
             fireballElement.style.top = (playScreen.offsetHeight - fireballStats.height) * Math.random() + 'px';
             playScreen.appendChild(fireballElement)
+        },
+        createHadouken: () => {
+            let hadoukenElement = document.createElement('div');
+            hadoukenElement.classList.add('hadouken');
+            hadoukenElement.style.width = hadoukenStats.width + 'px';
+            hadoukenElement.style.height = hadoukenStats.height + 'px';
+
+            hadoukenElement.style.left = fighter.x + 'px';
+            hadoukenElement.style.top = fighter.y + 'px';
+
+            playScreen.appendChild(hadoukenElement)
+
         }
     };
 

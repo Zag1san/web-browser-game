@@ -1,7 +1,5 @@
-function gameStateFactory() {
-    
-    let state = {
-        gameOver: false,
+var state = {
+    gameOver: false,
         score: 0,
         fighter: {
             x: 100,
@@ -18,11 +16,14 @@ function gameStateFactory() {
             speed: 3, 
             width: 50,
             height: 50
-        }
-    };
-
-    return function() {
-        return state;
-    };
+        },
+        hadoukenStats: {
+            width: 60,
+            height: 50,
+            speed: 3,
+        },
 
 }
+    
+    
+

@@ -51,6 +51,11 @@ body {
     background-size: cover;
 
 }
+.hadouken {
+    position: absolute;
+    background-image: url('/images/hadouken.png');
+    background-size: cover;
+}
 
 .hidden {
     display: none;

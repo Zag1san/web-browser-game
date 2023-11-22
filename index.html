@@ -17,14 +17,12 @@
     <script src="gameState.js"></script>
     <script src="gameFactory.js"></script>
     <script>
-        let getState = gameStateFactory();
-        let state = getState()
+        
         let game = gameFactory();
 
         game.startScreen.addEventListener('click', gameStart);
         document.addEventListener('keydown', onKeyDown);
         document.addEventListener('keyup', onKeyUp);
-
 
         function gameStart() {
             game.startScreen.classList.add('hidden');
@@ -39,6 +37,14 @@
 
             fighterMovement(state, game);
 
+            if(state.keys.Space) {
+                 fighterElement.style.backgroundImage = "url('/images/ryu-firing1.png')";
+                 game.createHadouken();
+            } else {
+                fighterElement.style.backgroundImage = "url('/images/ryu-standing1.png')";
+
+
+            }
 
 
             // Move fireballs
@@ -64,7 +70,9 @@
                 game.createFireball();
                 state.fireballStats.nextFireballCreation = timestamp + Math.random() * state.fireballStats.maxCreationInterval;
             }
+            // Increase fireball speed
 
+            state.fireballStats.speed += 0.001;
 
             // Render
 
@@ -109,9 +117,7 @@
             let firstRect = firstElement.getBoundingClientRect();
             let secondRect = secondElement.getBoundingClientRect();
 
-            return !(firstRect.top - 30 > secondRect.bottom - 35 || firstRect.bottom < secondRect.top || firstRect.right - 20 < secondRect.left || firstRect.left - 60 > secondRect.right - 70);
-                
-            
+            return !(firstRect.top - 30 > secondRect.bottom - 35 || firstRect.bottom < secondRect.top || firstRect.right - 20 < secondRect.left || firstRect.left - 60 > secondRect.right - 70);  
         }
 
         function gameOver() {
