@@ -14,13 +14,13 @@ var state = {
             nextFireballCreation: 0,
             maxCreationInterval: 2000,
             speed: 3, 
-            width: 50,
-            height: 50,
+            width: 70,
+            height: 60,
             score: 200
         },
         hadoukenStats: {
-            width: 60,
-            height: 50,
+            width: 80,
+            height: 70,
             speed: 6,
             nextHadoukenCreation: 0,
             attackSpeed: 300,

@@ -88,23 +88,23 @@
                 });
             // Move Clouds
 
-            Array.from(document.getElementsByClassName('cloud'))
-                .forEach(x => {
-                    let currentPosition = parseInt(x.style.left);
-                    if (currentPosition > 0) {
-                        x.style.left = currentPosition - state.cloudStats.speed + 'px';
-                    } else {
-                        x.remove();
-                    }
-                });
+            // Array.from(document.getElementsByClassName('cloud'))
+            //     .forEach(x => {
+            //         let currentPosition = parseInt(x.style.left);
+            //         if (currentPosition > 0) {
+            //             x.style.left = currentPosition - state.cloudStats.speed + 'px';
+            //         } else {
+            //             x.remove();
+            //         }
+            //     });
 
 
-            // spawn clouds
+            // // spawn clouds
 
-            if (state.cloudStats.nextCloudCreation < timestamp) {
-                game.createCloud();
-                state.cloudStats.nextCloudCreation = timestamp + Math.random() * state.cloudStats.maxCreationInterval;
-            }
+            // if (state.cloudStats.nextCloudCreation < timestamp) {
+            //     game.createCloud();
+            //     state.cloudStats.nextCloudCreation = timestamp + Math.random() * state.cloudStats.maxCreationInterval;
+            // }
 
             //spawn fireball
             if (state.fireballStats.nextFireballCreation < timestamp) {
@@ -133,16 +133,13 @@
         function fighterMovement(state, game) {
             let fighter = state.fighter;
 
-            let isLowerBound = fighter.y + fighter.height >= game.playScreen.offsetHeight;
+            let isLowerBound = fighter.y + fighter.height >= game.playScreen.offsetHeight - 57;
             if (!isLowerBound) {
                 fighter.y += fighter.gravity;
             }
-
-
             if (state.keys.KeyW && fighter.y > 0) {
                 fighter.y -= fighter.speed;
             }
-
             if (state.keys.KeyS && !isLowerBound) {
                 fighter.y += fighter.speed;
             }
