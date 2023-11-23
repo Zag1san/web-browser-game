@@ -4,7 +4,8 @@ body {
 }
 
 .game-wrapper {  
-    background-color: lightblue;
+    background-image: url('/images/SagatStage.jpg');
+    background-size: cover;
     width: 100vw;
     height: 45.2vw;
 }
@@ -41,8 +42,8 @@ body {
 .fighter {
     position: absolute;
     background-image: url('/images/Ryu-standing1.png');
-    width: 100px;
-    height: 142px;
+    width: 140px;
+    height: 199px;
 }
 
 .fireball {
@@ -55,6 +56,12 @@ body {
     position: absolute;
     background-image: url('/images/hadouken.png');
     background-size: cover;
+}
+.cloud {
+    position: absolute;
+    background-image: url('/images/cloud.png');
+    background-size: cover;
+    
 }
 
 .hidden {

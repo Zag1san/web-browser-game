@@ -25,6 +25,13 @@ var state = {
             nextHadoukenCreation: 0,
             attackSpeed: 300,
         },
+        cloudStats: {
+            nextCloudCreation: 0,
+            maxCreationInterval: 4000,
+            speed: 2,
+            width: 150,
+            height: 150,
+        }
 
 }
     

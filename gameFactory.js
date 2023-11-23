@@ -1,7 +1,7 @@
 function gameFactory() {
    
 
-    let { fighter, fireballStats, hadoukenStats } = state;
+    let { fighter, fireballStats, hadoukenStats, cloudStats } = state;
 
     let startScreen = document.querySelector('.start-screen');
     let playScreen = document.querySelector('.play-screen');
@@ -24,7 +24,7 @@ function gameFactory() {
 
             fireballElement.style.left = playScreen.offsetWidth - fireballStats.width + 'px';
             fireballElement.style.top = (playScreen.offsetHeight - fireballStats.height) * Math.random() + 'px';
-            playScreen.appendChild(fireballElement)
+            playScreen.appendChild(fireballElement);
         },
         createHadouken: () => {
             let hadoukenElement = document.createElement('div');
@@ -35,8 +35,17 @@ function gameFactory() {
             hadoukenElement.style.left = fighter.x + state.hadoukenStats.width + 25 + 'px';
             hadoukenElement.style.top = fighter.y + state.hadoukenStats.height - 40 + 'px';
 
-            playScreen.appendChild(hadoukenElement)
+            playScreen.appendChild(hadoukenElement);
 
+        },
+        createCloud: () => {
+            let cloudElement = document.createElement('div');
+            cloudElement.classList.add('cloud');
+            cloudElement.style.width = cloudStats.width + 'px';
+            cloudElement.style.height = cloudStats.height + 'px';
+            cloudElement.style.left = playScreen.offsetWidth - (cloudStats.width - 30) + 'px';
+            cloudElement.style.top = (playScreen.offsetHeight - cloudStats.height) * Math.random() + 'px';
+            playScreen.appendChild(cloudElement);
         }
     };
 

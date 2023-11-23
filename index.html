@@ -39,11 +39,11 @@
 
             if (state.keys.Space) {
                 fighterElement.style.backgroundImage = "url('/images/ryu-firing1.png')";
-                if(state.hadoukenStats.nextHadoukenCreation < timestamp) {
+                if (state.hadoukenStats.nextHadoukenCreation < timestamp) {
                     game.createHadouken();
                     state.hadoukenStats.nextHadoukenCreation = timestamp + state.hadoukenStats.attackSpeed;
                 }
-               
+
             } else {
                 fighterElement.style.backgroundImage = "url('/images/ryu-standing1.png')";
 
@@ -84,10 +84,27 @@
                     } else {
                         x.remove();
                     }
-                    if (hasCollision(fighterElement, x)) {
-                        state.gameOver = true;
+
+                });
+            // Move Clouds
+
+            Array.from(document.getElementsByClassName('cloud'))
+                .forEach(x => {
+                    let currentPosition = parseInt(x.style.left);
+                    if (currentPosition > 0) {
+                        x.style.left = currentPosition - state.cloudStats.speed + 'px';
+                    } else {
+                        x.remove();
                     }
                 });
+
+
+            // spawn clouds
+
+            if (state.cloudStats.nextCloudCreation < timestamp) {
+                game.createCloud();
+                state.cloudStats.nextCloudCreation = timestamp + Math.random() * state.cloudStats.maxCreationInterval;
+            }
 
             //spawn fireball
             if (state.fireballStats.nextFireballCreation < timestamp) {
